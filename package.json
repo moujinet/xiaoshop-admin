@@ -1,0 +1,84 @@
+{
+  "name": "@xiaoshop/xiaoshop-admin",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@8.15.4",
+  "description": "XiaoShop - 云链小商城后台管理系统",
+  "author": "Luoyi <luoyi@mouji.net>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "vite --mode development",
+    "build": "vue-tsc && vite build --mode production",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "stylelint": "stylelint src/**/*.{html,vue,css,less}",
+    "sizecheck": "npx vite-bundle-visualizer",
+    "commit": "czg",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "@unhead/vue": "^1.8.11",
+    "@vueuse/core": "^10.9.0",
+    "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
+    "defu": "^6.1.4",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.1.7",
+    "tdesign-vue-next": "^1.8.1",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.8.0",
+    "@antfu/ni": "^0.21.12",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "@iconify-json/ph": "^1.1.11",
+    "@iconify/vue": "^4.1.1",
+    "@types/nprogress": "^0.2.3",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "@vue-macros/volar": "^0.18.11",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-git": "^1.9.0",
+    "czg": "^1.9.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.22.0",
+    "less": "^4.2.0",
+    "lint-staged": "^15.2.2",
+    "pnpm": "^8.15.4",
+    "postcss-html": "^1.6.0",
+    "postcss-less": "^6.0.0",
+    "simple-git-hooks": "^2.10.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4",
+    "typescript": "^5.3.3",
+    "unplugin-auto-import": "^0.17.5",
+    "unplugin-vue-components": "^0.26.0",
+    "unplugin-vue-macros": "^2.7.10",
+    "unplugin-vue-router": "^0.8.4",
+    "vite": "^5.1.5",
+    "vite-bundle-visualizer": "^1.0.1",
+    "vite-plugin-pwa": "^0.19.2",
+    "vite-plugin-vue-layouts": "^0.11.0",
+    "vue-tsc": "^2.0.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,ts,tsx,js,jsx}": "eslint --fix",
+    "*.{html,vue,css,less}": [
+      "pnpm stylelint --fix"
+    ]
+  }
+}

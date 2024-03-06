@@ -1,0 +1,104 @@
+.layout {
+  min-height: 100%;
+
+  &-header {
+    display: flex;
+    padding: var(--x-layout-header-padding);
+    height: var(--x-layout-header-height);
+    box-shadow: var(--x-layout-header-shadow);
+    background: var(--x-layout-header-bg-color);
+
+    &__logo,
+    &__user {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    &__logo {
+      width: calc(var(--x-layout-sider-main-width) + var(--x-layout-sider-sub-width) - var(--x-layout-header-padding-x));
+    }
+
+    &__user {
+      flex: 1;
+      justify-content: right;
+      gap: var(--td-size-6);
+
+      .t-divider {
+        margin: 0;
+        border-color: var(--x-layout-header-divider-color);
+      }
+    }
+  }
+
+  &-sider {
+    &-main {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: auto;
+      width: var(--x-layout-sider-main-width);
+      background-color: var(--x-layout-sider-main-bg-color);
+      border-right: var(--x-layout-sider-border);
+      padding: var(--td-comp-paddingTB-s) 0;
+
+      &__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s;
+        text-decoration: none;
+        color: var(--x-layout-sider-main-menu-color);
+        padding: var(--x-layout-sider-main-menu-padding);
+
+        span {
+          font-size: var(--x-layout-sider-main-menu-font-size);
+        }
+
+        &--icon {
+          display: flex;
+          justify-content: center;
+          font-size: var(--x-layout-sider-main-menu-icon-size);
+        }
+
+        &:hover {
+          color: var(--x-layout-sider-main-menu-color-hover);
+        }
+
+        &.is-active {
+          color: var(--x-layout-sider-main-menu-color-active);
+        }
+      }
+    }
+
+    &-sub {
+      width: var(--x-layout-sider-sub-width);
+      background-color: var(--x-layout-sider-sub-bg-color);
+      border-right: var(--x-layout-sider-border);
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--x-layout-footer-padding);
+    color: var(--x-layout-footer-color);
+    font-size: var(--x-layout-footer-font-size);
+    line-height: var(--x-layout-footer-line-height);
+
+    &__links {
+      .t-divider {
+        border-color: var(--td-border-level-2-color);
+      }
+
+      a {
+        color: var(--x-layout-footer-color);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--td-text-color-primary);
+        }
+      }
+    }
+  }
+}
