@@ -32,6 +32,21 @@
   }
 
   &-sider {
+    display: flex;
+    width: calc(var(--x-layout-sider-main-width) + var(--x-layout-sider-sub-width));
+
+    &.no-sider {
+      width: 0;
+    }
+
+    &.only-main {
+      width: var(--x-layout-sider-main-width);
+    }
+
+    &.only-sub {
+      width: var(--x-layout-sider-sub-width);
+    }
+
     &-main {
       display: flex;
       flex-direction: column;

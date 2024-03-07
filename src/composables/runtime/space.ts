@@ -3,11 +3,11 @@ import type { IAdminModule, IAdminSpace, TAdminMenu, TAdminMenuDefinition, TAdmi
 export const useAdminSpace = defineStore('space', () => {
   const spaces = ref<IAdminSpace[]>([
     { id: 'shop', name: '店铺', desc: '店铺管理', icon: 'ph:storefront', sort: 0 },
-    { id: 'editor', name: '设计', desc: '店铺装修', icon: 'ph:magic-wand', sort: 1 },
+    { id: 'app', name: '应用', desc: '应用管理', icon: 'ph:vibrate', sort: 1 },
     { id: 'settings', name: '管理', desc: '系统管理', icon: 'ph:faders', sort: 99 },
   ])
-  const activeSpaceID = ref<string>('shop')
   const menus = ref<Record<string, TAdminMenu>>({})
+  const defaultPaths = ref<Record<string, string>>({})
 
   /**
    * Create new space
@@ -24,16 +24,6 @@ export const useAdminSpace = defineStore('space', () => {
         sort: space.sort || spaces.value.length,
       })
     }
-  }
-
-  /**
-   * Switch to space
-   *
-   * @param to string
-   */
-  function switchToSpace(to: string) {
-    if (activeSpaceID.value !== to)
-      activeSpaceID.value = to
   }
 
   /**
@@ -96,6 +86,28 @@ export const useAdminSpace = defineStore('space', () => {
     })
 
     module.children?.sort((a, b) => a.sort - b.sort)
+    module.path = _getMenuLeadPath(module.children || []).path
+  }
+
+  /**
+   * Get all menus
+   */
+  const getAllMenus = computed(() => Object.values(menus.value).sort((a, b) => a.sort - b.sort))
+
+  /**
+   * Get default module path
+   *
+   * @param spaceId string
+   * @returns string
+   */
+  function getDefaultModulePath(spaceId: string): string {
+    if (!defaultPaths.value[spaceId]) {
+      defaultPaths.value[spaceId] = getAllMenus.value.find(
+        m => m.space === spaceId && m.type === 'module',
+      )?.path || ''
+    }
+
+    return defaultPaths.value[spaceId]
   }
 
   /**
@@ -170,22 +182,16 @@ export const useAdminSpace = defineStore('space', () => {
     // Get all spaces
     spaces: computed(() => spaces.value.sort((a, b) => a.sort - b.sort)),
     // Get all menus
-    menus: computed(() => Object.values(menus.value).sort((a, b) => a.sort - b.sort)),
-    // Get active space ID
-    activeSpaceId: computed(() => activeSpaceID.value),
-    // Get active space menus
-    activeSpaceMenus: computed(() => {
-      return Object.values(menus.value).filter(m => m.space === activeSpaceID.value)
-    }),
+    menus: getAllMenus,
     // Get space by ID
     getSpace,
     // Create new space
     createSpace,
-    // Switch to space
-    switchToSpace,
     // Add new module to space
     addModule,
     // Add menus to module
     addModuleMenus,
+    // Get default module path
+    getDefaultModulePath,
   }
 })
