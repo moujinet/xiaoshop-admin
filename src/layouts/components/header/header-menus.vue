@@ -41,7 +41,6 @@ const route = useRoute()
     padding: 0 var(--td-size-6);
     transition: all 0.3s;
     color: var(--td-font-white-2);
-    border-radius: 0 0 var(--td-radius-large) var(--td-radius-large);
     text-decoration: none;
 
     &__icon {
@@ -55,7 +54,8 @@ const route = useRoute()
 
     &.is-active {
       color: var(--td-font-white-1);
-      background-color: var(--x-primary-color);
+      background-image: var(--x-layout-header-menu-active-bg);
+
     }
   }
 }

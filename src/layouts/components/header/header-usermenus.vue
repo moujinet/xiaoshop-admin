@@ -24,7 +24,7 @@ const userMenus: DropdownProps['options'] = [
 </script>
 
 <template>
-  <TDropdown :options="userMenus" trigger="click">
+  <TDropdown :options="userMenus" trigger="click" placement="bottom-right">
     <div class="header-usermenus">
       {{ user.username }}
       <CommonIcon class="header-usermenus__arrow" name="ph:caret-down" />

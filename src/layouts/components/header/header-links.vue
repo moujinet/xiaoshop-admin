@@ -14,10 +14,10 @@ function showQRCodeDialog() {
 
 <template>
   <TSpace>
-    <TTooltip content="访问应用">
+    <TTooltip content="访问店铺">
       <div class="header-link" @click="showQRCodeDialog">
         <CommonIcon class="header-link__icon" name="ph:qr-code" inline />
-        访问应用
+        访问店铺
       </div>
     </TTooltip>
 
